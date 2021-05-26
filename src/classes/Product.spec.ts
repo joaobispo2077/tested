@@ -5,7 +5,7 @@ const createSut = (name: string, price: number) => {
 };
 
 describe('Messaging', () => {
-  it('should construct a product', () => {
+  it('should have properties name and price', () => {
     // SUT -> System Under Test
     const productName = 'Bolacha';
     const productPrice = 4.2;
