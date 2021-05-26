@@ -19,3 +19,19 @@ describe('Primitive Values', () => {
     expect(number).toHaveProperty('toString');
   });
 });
+
+describe('Objects', () => {
+  it('should test jest assertions with objects', () => {
+    const number = 10;
+    const person = { name: 'Joao', age: 21 };
+    const anotherPerson = { ...person };
+
+    // expect(person).toBe(anotherPerson); // test with Primitive Values
+    expect(person).toEqual(anotherPerson); // test with Objects
+
+    expect(anotherPerson).toHaveProperty('age', 21);
+    expect(anotherPerson).not.toHaveProperty('firstname');
+
+    expect(person.name).toBe('Joao');
+  });
+});
