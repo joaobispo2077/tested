@@ -1,15 +1,27 @@
-describe('Testando orderRepositores', () => {
-  it('Número Igual a 1', () => {
-    const number = 1;
+import { OrderRepositories } from './OrderRepositories';
 
-    expect(number).toBe(1);
+describe('OrderRepositories', () => {
+  afterEach(() => jest.clearAllMocks());
+
+  it('should return undefined', () => {
+    const sutOrderRepositories = new OrderRepositories();
+
+    expect(sutOrderRepositories.saveOrder()).toBeUndefined();
   });
-});
 
-describe('Testando...', () => {
-  test('Nome igual a Joao', () => {
-    const name = 'Joao';
+  it('should call log once', () => {
+    const sutOrderRepositories = new OrderRepositories();
+    const consoleSpy = jest.spyOn(console, 'log');
 
-    expect(name).toBe('Joao');
+    sutOrderRepositories.saveOrder();
+    expect(consoleSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call log once with "Pedido salvo com sucesso...."', () => {
+    const sutOrderRepositories = new OrderRepositories();
+    const consoleSpy = jest.spyOn(console, 'log');
+
+    sutOrderRepositories.saveOrder();
+    expect(consoleSpy).toHaveBeenCalledWith('Pedido salvo com sucesso....');
   });
 });
