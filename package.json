@@ -6,7 +6,8 @@
   "author": "João Bispo <joaobispo2077@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:silent": "jest --watchAll --silent --noStackTrace"
   },
   "dependencies": {},
   "devDependencies": {
