@@ -37,6 +37,8 @@ const createCartItemMock = (name: string, price: number) => {
 };
 
 describe('ShoppingCart', () => {
+  afterEach(() => jest.clearAllMocks());
+
   it('should be an empty cart when no product is added', () => {
     const { sutShoppingCart } = createSut();
 
@@ -54,6 +56,18 @@ describe('ShoppingCart', () => {
 
     expect(sutShoppingCart.getTotalPrice()).toBe(200);
     expect(sutShoppingCart.getTotalPriceWithDiscount()).toBe(200);
+  });
+
+  it('should call discount.calculate(price) once when getTotalWithDiscount is called', () => {
+    const { sutShoppingCart, discountMock } = createSutWithProducts();
+
+    const discountMockSpy = jest.spyOn(discountMock, 'calculate');
+    sutShoppingCart.getTotalPriceWithDiscount();
+
+    expect(discountMockSpy).toHaveBeenCalledTimes(1);
+    expect(discountMockSpy).toHaveBeenCalledWith(
+      sutShoppingCart.getTotalPrice(),
+    );
   });
 
   it('should add products and clear cart', () => {
